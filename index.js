@@ -47,6 +47,9 @@ app.get('/busca', (req, res) => {
             image: ""
         }
     ]
+    
+    //função de filtrar query
+    
     let procura = []
     busca.forEach(element => {
        
