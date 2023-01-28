@@ -30,7 +30,7 @@ app.get('/banner', (req, res) => {
 app.get('/busca', (req, res) => {
     const termo = req.query.q
     console.log(termo)
-    const busca = [{
+    const produtos = [{
             categoria: "tenis",
             titulo: "calçado",
             descricao: "nopé",
@@ -47,21 +47,24 @@ app.get('/busca', (req, res) => {
             image: ""
         }
     ]
-    
-    //função de filtrar query
-    
-    let procura = []
-    busca.forEach(element => {
-       
-        if((element.descricao).includes(termo)){
-            procura.push(element)
-        }else {
-            procura.push("Elemento vazio")
-        }
-    })
+    // MODO 1 FOR EACH 
+    // let procura = []
+    // produtos.forEach(element => {
+
+    //     if ((element.descricao).includes(termo)) {
+    //         procura.push(element)
+    //     }
+    // })
+
+    //MODO 2 FILTER
+    const procura = produtos.filter((produto) => (produto.descricao).includes(termo))
+
+
     res.send(procura)
-    
+
 })
+
+
 // Iniciando o servidor na porta 3000
 app.listen(3000, () => {
     console.log('Server started on port 3000');
